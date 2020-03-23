@@ -6,5 +6,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'test';
+
+  constructor(){}
+
+  title = 'Ololo';
+  list = ['Angular','React','Vue'];
+  isVisible = true;
+
+
+  clickHandler() {
+    console.log('parent');
+  }
 }

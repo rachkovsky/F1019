@@ -1,0 +1,9 @@
+<div>
+    <ul>
+        <li *ngFor="let item of list">
+        <a [routerLink]="['/todo', item.id]">
+            <span [ngClass]="{'completed': item.completed}">{{ item.title }}</span>
+        </a>
+        </li>
+    </ul>
+</div>
