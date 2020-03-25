@@ -1,27 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import {Router, ActivatedRoute} from '@angular/router';
-import { HttpClient } from '@angular/common/http';
-
+import { Router, ActivatedRoute} from '@angular/router';
+import  { ITodo }  from '../../interfaces/todo';
 
 @Component({
   selector: 'app-todo-item',
   templateUrl: './todo-item.component.html',
   styleUrls: ['./todo-item.component.scss']
 })
+
 export class TodoItemComponent implements OnInit {
   
-  id: any;
-  data: any;
+  todo: ITodo;
 
-  constructor(private route: ActivatedRoute, private http: HttpClient) { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.paramMap.get('id');
-    this.http.get(`https://jsonplaceholder.typicode.com/todos/${this.id}`).subscribe((res) => {
-      console.log(res);
-      this.data = res;
-    })
-
+    console.log(this.route.snapshot.data);
+    this.todo = this.route.snapshot.data.todo;
+  
   }
 
 }

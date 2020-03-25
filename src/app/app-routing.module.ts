@@ -1,11 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+// import { HttpClientModule } from '@angular/common/http';
+
 import { TodoListComponent } from './components/todo-list/todo-list.component';
 import { SidebarComponent} from './components/sidebar/sidebar.component'
-import { TodoItemComponent } from './components/todo-item/todo-item.component'
+import { TodoItemComponent } from './components/todo-item/todo-item.component';
+
+
+import { TodoIdResolverService } from './resolvers/todo-id-resolver/todo-id-resolver.service';
 
 const routes: Routes = [
-  
   { 
     path: '',
     redirectTo: '/todo',
@@ -18,6 +22,9 @@ const routes: Routes = [
   {
     path: 'todo/:id',
     component: TodoItemComponent,
+    resolve: {
+      todo: TodoIdResolverService
+    }
     
   },
   {
@@ -27,7 +34,12 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [
+    RouterModule.forRoot(routes),
+    // HttpClientModule,
+    RouterModule
+  ],
+  exports: [RouterModule],
+  providers: []
 })
 export class AppRoutingModule { }

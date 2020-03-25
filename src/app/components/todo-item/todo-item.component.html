@@ -1,3 +1,7 @@
-<h2>
-    {{ data | json }}
+<h2 *ngIf="todo">
+    {{ todo.title }}
+</h2>
+
+<h2 *ngIf="!todo">
+    Error
 </h2>
