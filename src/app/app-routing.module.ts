@@ -8,6 +8,9 @@ import { TodoItemComponent } from './components/todo-item/todo-item.component';
 
 
 import { TodoIdResolverService } from './resolvers/todo-id-resolver/todo-id-resolver.service';
+import { AdminComponent } from './components/admin/admin.component';
+import { LoginComponent } from './components/login/login.component'
+import { AdminGuard } from './guards/admin/admin.guard';
 
 const routes: Routes = [
   { 
@@ -25,11 +28,19 @@ const routes: Routes = [
     resolve: {
       todo: TodoIdResolverService
     }
-    
   },
   {
     path: 'sidebar',
     component: SidebarComponent
+  },
+  {
+    path: 'admin',
+    component: AdminComponent,
+    canActivate: [AdminGuard]
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
   }
 ];
 

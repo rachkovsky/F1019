@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UserService } from './services/user/user.service';
 
 @Component({
   selector: 'app-root',
@@ -7,11 +8,37 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  constructor(){}
+  userStatus;
+  buttonLabel: string;
 
-  title = 'Ololo';
-  list = ['Angular','React','Vue'];
-  isVisible = true;
+  constructor(private user: UserService){
+    user.user$.subscribe((user) => {
+      console.log('------ ', user);
+      this.userStatus = user;
+      if (this.userStatus === 'admin') {
+        this.buttonLabel = 'logout';
+      } else {
+        this.buttonLabel = 'login';
+      }
+    })
+  }
+
+  login() {
+    if (this.userStatus === 'admin') {
+      this.user.changeRole('guest');
+      
+    } else {
+      this.user.changeRole('admin');
+    }
+  }
+
+  // title = 'Ololo';
+  // list = ['Angular','React','Vue'];
+  // isVisible = true;
+
+
+
+
 
 
   clickHandler() {

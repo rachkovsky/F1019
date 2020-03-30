@@ -1,15 +1,21 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <header>
-        <ul class="nav nav-pills mb-5">
+      <header class="navbar mb-4">
+        <ul class="nav nav-pills">
           <li class="nav-item">
-            <a class="nav-link" routerLink="/todo" routerLinkActive="active">Todo</a>
+            <a appColored class="nav-link" routerLink="/todo" routerLinkActive="active">Todo</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" routerLink="/sidebar" routerLinkActive="active">Sidebar</a>
           </li>
+          <li *ngIf="userStatus === 'admin'" class="nav-item">
+            <a class="nav-link" routerLink="/admin" routerLinkActive="active">Admin</a>
+          </li>
         </ul>
+
+          <button class="btn btn-secondary" (click)="login()">{{ buttonLabel }}</button>
+
       </header>
     </div>
     <div class="col-12">
