@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../services/user/user.service'
 
@@ -8,9 +8,10 @@ import { UserService } from '../../services/user/user.service'
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
-  loginForm: FormGroup
+  loginForm: FormGroup;
+  subscription;
 
   constructor(private userService: UserService) { }
 
@@ -20,16 +21,19 @@ export class LoginComponent implements OnInit {
       pass: new FormControl('', [Validators.required, Validators.maxLength(16)]),
     });
 
-    this.loginForm.valueChanges.subscribe((changes) => {
+    this.subscription = this.loginForm.valueChanges.subscribe((changes) => {
       console.log('---- ', changes);
     })
-
   }
 
   submit() {
     if (this.loginForm.valid) {
       this.userService.loginUser(this.loginForm.value);
     }
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
 }

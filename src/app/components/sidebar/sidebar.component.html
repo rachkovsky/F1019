@@ -1,4 +1,21 @@
-<button (click)="onButtonClick()">Click me</button>
-<ul>
-  <li *ngFor="let ololo of list">{{ ololo }}</li>
+<!-- <button (click)="onButtonClick()">Click me</button> -->
+<ul *ngIf="list; else tmpl">
+  <li *ngFor="let i of list">{{ i }}</li>
 </ul>
+
+<div *ngTemplateOutlet="tmpl"></div>
+
+<ng-container *ngIf="true">
+  <h2>ololo</h2>
+</ng-container>
+
+
+<ng-template #tmpl>
+  <p> Not list found</p>
+</ng-template>
+
+<ng-template #tmpl2>
+  <h1> Not list found</h1>
+</ng-template>
+
+<ng-content></ng-content>

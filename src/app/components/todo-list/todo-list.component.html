@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="list; else tmpl">
     <ul>
         <li *ngFor="let item of list">
             <a appColored [routerLink]="['/todo', item.id]">
@@ -7,3 +7,8 @@
         </li>
     </ul>
 </div>
+
+
+<ng-template #tmpl>
+    <p> Not list found</p>
+</ng-template>

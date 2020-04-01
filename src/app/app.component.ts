@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UserService } from './services/user/user.service';
 
 @Component({
@@ -6,14 +6,15 @@ import { UserService } from './services/user/user.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
   userStatus;
   buttonLabel: string;
 
+  values: any[];
+
   constructor(private user: UserService){
     user.user$.subscribe((user) => {
-      console.log('------ ', user);
       this.userStatus = user;
       if (this.userStatus === 'admin') {
         this.buttonLabel = 'logout';
@@ -21,6 +22,14 @@ export class AppComponent {
         this.buttonLabel = 'login';
       }
     })
+  }
+
+  ngOnInit() {
+    let arr = [];
+    setInterval(() => {
+      arr.push(Math.random());
+      this.values = arr;
+    }, 2000);
   }
 
   login() {
@@ -31,15 +40,6 @@ export class AppComponent {
       this.user.changeRole('admin');
     }
   }
-
-  // title = 'Ololo';
-  // list = ['Angular','React','Vue'];
-  // isVisible = true;
-
-
-
-
-
 
   clickHandler() {
     console.log('parent');
