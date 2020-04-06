@@ -11,6 +11,8 @@ import { TodoIdResolverService } from './resolvers/todo-id-resolver/todo-id-reso
 import { AdminComponent } from './components/admin/admin.component';
 import { LoginComponent } from './components/login/login.component'
 import { AdminGuard } from './guards/admin/admin.guard';
+import { FormComponent } from './components/form/form.component';
+
 
 const routes: Routes = [
   { 
@@ -41,6 +43,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+  },
+  {
+    path: 'form',
+    component: FormComponent
   }
 ];
 

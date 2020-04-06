@@ -11,6 +11,7 @@ import { TodoItemComponent } from './components/todo-item/todo-item.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { ColoredDirective } from './directives/colored/colored.directive';
 import { LoginComponent } from './components/login/login.component';
+import { FormComponent } from './components/form/form.component';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { LoginComponent } from './components/login/login.component';
     AdminComponent,
     ColoredDirective,
     LoginComponent,
+    FormComponent,
   ],
   imports: [
     BrowserModule,
