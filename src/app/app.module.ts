@@ -12,6 +12,8 @@ import { AdminComponent } from './components/admin/admin.component';
 import { ColoredDirective } from './directives/colored/colored.directive';
 import { LoginComponent } from './components/login/login.component';
 import { FormComponent } from './components/form/form.component';
+import { CustomListComponent } from './components/custom-list/custom-list.component';
+import { TemplatesComponent } from './components/templates/templates.component';
 
 
 @NgModule({
@@ -24,6 +26,8 @@ import { FormComponent } from './components/form/form.component';
     ColoredDirective,
     LoginComponent,
     FormComponent,
+    CustomListComponent,
+    TemplatesComponent,
   ],
   imports: [
     BrowserModule,

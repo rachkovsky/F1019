@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { debounceTime, map, switchMap } from 'rxjs/operators';
+import { debounceTime, map, take, switchMap, switchAll, mergeAll, concatMap, mergeMap, exhaustMap, concatAll, exhaust, distinctUntilChanged } from 'rxjs/operators';
 
 
 
@@ -28,9 +28,10 @@ export class FormComponent implements OnInit {
   ngOnInit(): void {
 
     this.filterForm.valueChanges.pipe(
-      switchMap((changes) => {
-          return this.getData(this.filterForm.value)
-      })
+      debounceTime(500),
+      distinctUntilChanged((a,b) => JSON.stringify(a) === JSON.stringify(b) ),
+      switchMap(() => this.getData(this.filterForm.value)),
+      take(3),
     )
     .subscribe((res) => {
       console.log(res);

@@ -12,6 +12,8 @@ import { AdminComponent } from './components/admin/admin.component';
 import { LoginComponent } from './components/login/login.component'
 import { AdminGuard } from './guards/admin/admin.guard';
 import { FormComponent } from './components/form/form.component';
+import { TemplatesComponent } from './components/templates/templates.component';
+
 
 
 const routes: Routes = [
@@ -47,6 +49,11 @@ const routes: Routes = [
   {
     path: 'form',
     component: FormComponent
+  },
+  {
+    path: 'templates',
+    component: TemplatesComponent
+
   }
 ];
 
