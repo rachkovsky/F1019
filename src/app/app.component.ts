@@ -1,47 +1,36 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { UserService } from './services/user/user.service';
+import { TodosService } from './services/todos/todos.service';
+import { ListComponent } from '../app/components/list/list.component'
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewInit {
 
-  userStatus;
-  buttonLabel: string;
+  @ViewChild(ListComponent) listCmp;
 
-  values: any[];
+  values$: any;
 
-  constructor(private user: UserService){
-    user.user$.subscribe((user) => {
-      this.userStatus = user;
-      if (this.userStatus === 'admin') {
-        this.buttonLabel = 'logout';
-      } else {
-        this.buttonLabel = 'login';
-      }
-    })
+  constructor(private service: TodosService){
+
   }
 
   ngOnInit() {
-    let arr = [];
-    setInterval(() => {
-      arr.push(Math.random());
-      this.values = arr;
-    }, 2000);
+    // this.listCmp.doSomething();
+    this.values$ = this.service.getCounter();
   }
 
-  login() {
-    if (this.userStatus === 'admin') {
-      this.user.changeRole('guest');
-      
-    } else {
-      this.user.changeRole('admin');
-    }
+  add() {
+    this.service.addToCounter();
+    // this.values.push('Backbone');
   }
 
-  clickHandler() {
-    console.log('parent');
+  ngAfterViewInit() {
+    // 
+    this.listCmp.doSomething();
   }
+
 }

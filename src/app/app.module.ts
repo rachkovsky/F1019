@@ -14,6 +14,7 @@ import { LoginComponent } from './components/login/login.component';
 import { FormComponent } from './components/form/form.component';
 import { CustomListComponent } from './components/custom-list/custom-list.component';
 import { TemplatesComponent } from './components/templates/templates.component';
+import { ListComponent } from './components/list/list.component';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { TemplatesComponent } from './components/templates/templates.component';
     FormComponent,
     CustomListComponent,
     TemplatesComponent,
+    ListComponent,
   ],
   imports: [
     BrowserModule,

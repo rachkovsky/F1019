@@ -1,0 +1,14 @@
+<div *ngIf="list; else tpl3">
+
+    <ul>
+        <li *ngFor="let i of list | async">
+            <ng-container [ngTemplateOutletContext]="{$implicit: i}"  [ngTemplateOutlet]="itemTemplateRef"></ng-container>
+        </li>
+    </ul>
+
+</div>
+
+
+<ng-template  #tpl3>
+    <p>not item found</p>
+</ng-template>

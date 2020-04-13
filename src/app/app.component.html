@@ -1,43 +1,28 @@
 <div class="container">
   <div class="row">
-    <div class="col-12 mt-5">
-      <!-- <header class="navbar mb-4">
-        <ul class="nav nav-pills">
-          <li class="nav-item">
-            <a appColored class="nav-link" routerLink="/todo" routerLinkActive="active">Todo</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/sidebar" routerLinkActive="active">Sidebar</a>
-          </li>
-          <li *ngIf="userStatus === 'admin'" class="nav-item">
-            <a class="nav-link" routerLink="/admin" routerLinkActive="active">Admin</a>
-          </li>
-        </ul>
 
-          <button class="btn btn-secondary" (click)="login()">{{ buttonLabel }}</button>
 
-      </header> -->
-    </div>
-    <div class="col-12">
+    <app-list [list]="values$">
 
-      <router-outlet></router-outlet>
-      
-    </div>
-    <div class="col-12">
-      <!-- <footer>Footer</footer> -->
-    </div>
+      <ng-template let-item #temp>
+        <p>------ {{ item }}</p>
+      </ng-template> 
+      <app-sidebar></app-sidebar>
+
+    </app-list>
+
+
   </div>
 
+  <div class="row">
+
+
+    <button class="btn btn-secondary" (click)="add()">add to list</button>
+
+
+  </div>
 </div>
 
 
 
 
-
-
-
-
-
-<!-- <app-sidebar (clicked)="clickHandler()" [list]="list"></app-sidebar>
-
-<app-todo-list></app-todo-list> -->

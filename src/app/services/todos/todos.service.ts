@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ReplaySubject, Subject } from 'rxjs';
+import { ReplaySubject, Subject, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,19 +9,22 @@ export class TodosService {
 
   constructor(private http: HttpClient) { }
 
+  arr = [0];
+  counter = 0;
 
-  public counter$ = new ReplaySubject();
-  count = 0;
 
-  getTodos() {
-    return this.http.get('https://jsonplaceholder.typicode.com/todos');
+  public counter$ = new BehaviorSubject(this.arr);
+
+  getCounter() {
+    return this.counter$;
   }
 
-  addCount() {
-    this.count++
-    this.counter$.next(this.count);
-  }
 
+  addToCounter() {
+    this.counter++;
+    this.arr.push(this.counter);
+    this.counter$.next(this.arr);
+  }
 
 
 }
